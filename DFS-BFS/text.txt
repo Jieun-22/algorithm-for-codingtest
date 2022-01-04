@@ -1,0 +1,6 @@
+스택 - 선입 후출
+큐 - 선입선출
+
+DFS(Depth First Search)
+
+BFS(Breadth First Search)
