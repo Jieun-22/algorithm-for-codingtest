@@ -37,3 +37,4 @@ dfs(1, data[0])
 
 print(max_value)
 print(min_value)
+
