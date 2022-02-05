@@ -34,5 +34,4 @@ for t in range(t):
 
   print(distance[n-1][n-1])
 
-  result = 0
   
