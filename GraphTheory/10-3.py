@@ -3,7 +3,7 @@
 def find_parent(parent, x):
   if parent[x] != x: 
     parent[x] = find_parent(parent, parent[x])
-  return x
+  return parent[x]
 
 def union_parent(parent, a, b):
   a = find_parent(parent, a)
@@ -19,9 +19,16 @@ parent = [0]*(v+1)
 for i in range(1, v+1): # 부모를 자기 자신으로 초기화
   parent[i] = i
 
+cycle = False
+
 for i in range(e):
   a, b = map(int, input().split())
-  union_parent(parent, a, b)
+ 
+  if find_parent(parent, a) == find_parent(parent, b):
+    cycle = True
+    break
+  else:
+    union_parent(parent, a, b)
 
 print('각 원소가 속한 집합: ', end = '')
 for i in range(1, v+1):
@@ -33,3 +40,9 @@ print()
 print('부모 테이블: ', end = '')
 for i in range(1, v+1):
   print(parent[i], end = ' ')
+
+if cycle :
+  print('사이클이 발생했습니다.')
+
+else:
+  print('사이클이 발생하지 않았습니다.')
