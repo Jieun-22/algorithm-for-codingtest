@@ -19,3 +19,4 @@ def solution(N, stages):
     answer = [i[0] for i in answer]
     
     return answer
+
