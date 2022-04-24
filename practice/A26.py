@@ -1,21 +1,18 @@
-#카드 정렬하기
+#26 카드 정렬하기
 
 n = int(input())
 
 data = []
-
 for _ in range(n):
   data.append(int(input()))
 
 data.sort()
-result = []
 
-summary = data[0]
+sum = data[0]
+answer = 0
 
-for i in range(1,n):
-  summary = summary + data[i]
-  result.append(summary)
+for i in range(1, len(data)):
+  sum += data[i]
+  answer += sum
 
-print(sum(result))
-
-
+print(answer)
