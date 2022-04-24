@@ -1,5 +1,4 @@
-# 치킨배달
-
+# 13 치킨 배달
 from itertools import combinations
 
 n, m = map(int, input().split())
@@ -7,29 +6,29 @@ n, m = map(int, input().split())
 home = []
 chicken = []
 
-for x in range(n):
+for i in range(n):
   data = list(map(int, input().split()))
-  for y in range(n):
-    if data[y] == 1:
-      home.append((x,y))
-    elif data[y] == 2:
-      chicken.append((x,y))
+  for j in range(n):
+    if data[j] == 1:
+      home.append((i,j))
+    elif data[j] == 2:
+      chicken.append((i,j))
 
 candidates = list(combinations(chicken, m))
 
-def get_sum(candidate):
-  result = 0
-  for hx, hy in home:
-    temp = 1e9
-    for cx,cy in candidate:
-      temp = min(temp, abs(hx-cx) + abs(hy-cy))
+result = 999999999
 
-    result += temp
-  return result
-
-result = 1e9
 for candidate in candidates:
-  result = min(result, get_sum(candidate))
+  sum = 0
+  for h in home :
+    x = 999999999
+    for c in candidate:
+      distance = abs(h[0] - c[0]) + abs(h[1] - c[1])
+      x = min(x, distance)
+    sum += x
+  result = min(result, sum)
 
 print(result)
+   
+
 
