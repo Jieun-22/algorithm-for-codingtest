@@ -1,22 +1,24 @@
-# 최종순위
-
+# 최종 순위
 from collections import deque
 
-for tc in range(int(input())):
-  n = int(input())
-  indegree = [0] * (n+1)
-  graph = [[False] * (n+1) for i in range(n+1)]
+t = int(input())
 
+for _ in range(t):
+  n = int(input())
   data = list(map(int, input().split()))
+
+  graph= [[False]*(n+1) for _ in range(n+1)]
+  indegree = [0]*(n+1)
+
   for i in range(n):
     for j in range(i+1,n):
       graph[data[i]][data[j]] = True
       indegree[data[j]] += 1
 
   m = int(input())
-  for i in range(m):
-    a,b = map(int, input().split())
-    if graph[a][b] :
+  for _ in range(m):
+    a, b = map(int, input().split())
+    if graph[a][b]:
       graph[a][b] = False
       graph[b][a] = True
       indegree[a] += 1
@@ -30,10 +32,10 @@ for tc in range(int(input())):
   result = []
   q = deque()
 
-  for i in range(1,n+1):
-    if indegree[i] ==0:
+  for i in range(1, n+1):
+    if indegree[i] == 0:
       q.append(i)
-
+  
   certain = True
   cycle = False
 
@@ -44,20 +46,20 @@ for tc in range(int(input())):
     if len(q) >= 2:
       certain = False
       break
-
+    
     now = q.popleft()
     result.append(now)
-    for j in range(1, n+1):
-      if graph[now][j]:
+    for j in range(1,n+1):
+      if graph[now][j] == True:
         indegree[j] -= 1
         if indegree[j] == 0:
           q.append(j)
-
-  if cycle :
+    
+  if cycle:
     print('IMPOSSIBLE')
   elif not certain:
     print('?')
   else:
     for i in result:
-      print(i, end= " ")
+      print(i, end = ' ')
     print()
