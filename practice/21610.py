@@ -58,7 +58,6 @@ for move in moves:
     array[x][y] += water_copy(x,y)
 
   clouds = cloud_make()
-  print(clouds)
 
 result = 0
 
